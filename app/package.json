@@ -1,0 +1,17 @@
+{
+  "name": "soundcloud-electron",
+  "productName": "SoundCloud",
+  "version": "2.5.0",
+  "description": "SoundCloud Desktop Client with 10-band EQ, Bass Boost, Custom Wallpapers & 2026 Track UI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron . --no-sandbox"
+  },
+  "dependencies": {
+    "auto-launch": "^5.0.6",
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "discord-rpc": "^4.0.0",
+    "electron-store": "^8.2.0"
+  }
+}
