@@ -1,0 +1,37 @@
+app-id: com.soundcloud.Client
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: '24.08'
+command: com.soundcloud.Client
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=wayland
+  - --socket=pulseaudio
+  - --share=network
+  - --device=dri
+  - --talk-name=org.freedesktop.Notifications
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --own-name=org.mpris.MediaPlayer2.soundcloud
+  - --filesystem=xdg-videos:ro
+  - --filesystem=xdg-pictures:ro
+  - --filesystem=xdg-download:ro
+  - --filesystem=xdg-run/discord-ipc-0
+  - --filesystem=xdg-run/app/com.discordapp.Discord:create
+modules:
+  - name: soundcloud-client
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/main
+      - cp -r app/* /app/main/
+      - install -Dm755 com.soundcloud.Client.sh /app/bin/com.soundcloud.Client
+      - install -Dm644 com.soundcloud.Client.desktop /app/share/applications/com.soundcloud.Client.desktop
+      - install -Dm644 com.soundcloud.Client.metainfo.xml /app/share/metainfo/com.soundcloud.Client.metainfo.xml
+      - install -Dm644 app/icon.png /app/share/icons/hicolor/512x512/apps/com.soundcloud.Client.png
+      - install -Dm644 app/icon.png /app/share/icons/hicolor/256x256/apps/com.soundcloud.Client.png
+      - install -Dm644 app/icon.png /app/share/icons/hicolor/128x128/apps/com.soundcloud.Client.png
+    sources:
+      - type: dir
+        path: .
